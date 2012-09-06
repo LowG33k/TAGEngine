@@ -23,7 +23,7 @@
 
 #include <string>
 #include <Config/Config.hpp>
-#include <Utilities/String.hpp>
+#include <Tools/String.hpp>
 
 #include <Debug/MemoryDebug.hpp>
 
@@ -77,7 +77,7 @@ namespace TAG
                 IFunction* m_function; ///< Pointer to the current function.
         };
 
-        #include <Utilities/Functor.inl>
+        #include <Tools/Functor.inl>
 
     } // end namespace Tools
 

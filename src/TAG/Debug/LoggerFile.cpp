@@ -20,8 +20,8 @@
 
 #include <Debug/LoggerFile.hpp>
 #include <iostream>
-#include <Utilities/Date.hpp>
-#include <Utilities/Time.hpp>
+#include <Tools/Date.hpp>
+#include <Tools/Time.hpp>
 
 namespace TAG
 {
@@ -34,7 +34,7 @@ namespace TAG
         {
             m_file << "--------------------------------" << std::endl;
             m_file << "+          Events log          +" << std::endl;
-            m_file << "+          " << Date::CurrentDate() << "          +" << std::endl;
+            m_file << "+          " << Tools::Date::CurrentDate() << "          +" << std::endl;
             m_file << "+           " << Time::CurrentTime() << "           +" << std::endl;
             m_file << "--------------------------------" << std::endl;
         }

@@ -18,21 +18,26 @@
  *
  */
 
-#ifndef DATE_HPP
-#define DATE_HPP
+#ifndef __Date_HPP__
+#define __Date_HPP__
 
 #include <string>
 
 namespace TAG
 {
 
-    class Date
+    namespace Tools
     {
-        public:
-            static std::string CurrentDate( const char* format );
-            static std::string CurrentDate( const std::string& format = "%d/%m/%Y" );
-    };
 
-}
+        class Date
+        {
+            public:
+                static std::string CurrentDate( const char* format );
+                static std::string CurrentDate( const std::string& format = "%d/%m/%Y" );
+        };
 
-#endif // DATE_HPP
+    } // end namespace Tools
+
+} // end namespace TAG
+
+#endif // __Date_HPP__

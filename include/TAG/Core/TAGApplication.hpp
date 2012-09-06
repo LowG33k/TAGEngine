@@ -24,7 +24,7 @@
 #include <Config/Config.hpp>
 #include <Core/Console.hpp>
 #include <SFML/Graphics.hpp>
-#include <Utilities/Singleton.hpp>
+#include <Tools/Singleton.hpp>
 #include <Debug/MemoryDebug.hpp>
 
 namespace TAG

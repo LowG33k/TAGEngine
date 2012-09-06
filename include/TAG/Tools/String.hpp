@@ -50,7 +50,7 @@ namespace TAG
             std::istringstream m_in;
     };
 
-    #include <Utilities/String.inl>
+    #include <Tools/String.inl>
 
 }
 

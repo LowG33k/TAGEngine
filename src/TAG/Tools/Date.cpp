@@ -24,17 +24,22 @@
 namespace TAG
 {
 
-    std::string Date::CurrentDate( const char *format )
+    namespace Tools
     {
-        char date[ 256 ];
-        time_t currentDate = time( NULL );
-        strftime( date, sizeof( date ), format, localtime( &currentDate ) );
+        std::string Date::CurrentDate( const char *format )
+        {
+            char date[ 256 ];
+            time_t currentDate = time( NULL );
+            strftime( date, sizeof( date ), format, localtime( &currentDate ) );
 
-        return date;
-    }
+            return date;
+        }
 
-    std::string Date::CurrentDate( const std::string &format )
-    {
-        return CurrentDate( format.c_str() );
-    }
-}
+        std::string Date::CurrentDate( const std::string &format )
+        {
+            return CurrentDate( format.c_str() );
+        }
+
+    } // end namespace Tools
+
+} // end namespace TAG

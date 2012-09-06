@@ -20,25 +20,25 @@ LIBS += -L"extlibs/lib" -lsfml-graphics-s-d -lsfml-window-s-d -lsfml-system-s-d
 DEPENDPATH += ./src/TAG
 DEPENDPATH += ./src/TAG/Debug
 DEPENDPATH += ./src/TAG/Core
-DEPENDPATH += ./src/TAG/Utilities
+DEPENDPATH += ./src/TAG/Tools
 DEPENDPATH += ./include/TAG
 DEPENDPATH += ./include/TAG/Config
 DEPENDPATH += ./include/TAG/Core
 DEPENDPATH += ./include/TAG/Debug
-DEPENDPATH += ./include/TAG/Utilities
+DEPENDPATH += ./include/TAG/Tools
 
 INCLUDEPATH += ./include
 INCLUDEPATH += ./include/TAG
 INCLUDEPATH += ./include/TAG/Config
 INCLUDEPATH += ./include/TAG/Core
 INCLUDEPATH += ./include/TAG/Debug
-INCLUDEPATH += ./include/TAG/Utilities
+INCLUDEPATH += ./include/TAG/Tools
 
 INCLUDEPATH += ./extlibs
 
 # HEADERS
-HEADERS += Config.hpp \
-    include/TAG/Debug/MemoryDebugOff.hpp
+HEADERS += Config.hpp
+HEADERS += MemoryDebugOff.hpp
 HEADERS += Singleton.hpp
 HEADERS += TAGApplication.hpp
 HEADERS += MemoryManager.hpp

@@ -24,81 +24,94 @@
 
 namespace TAG
 {
-    IMPL_SINGLETON( Console )
-
-    Console::Console():
-        m_currentCommand( ""),
-        m_enable( true )
+    namespace Core
     {
-        RegisterCommand( "?", Tools::Bind( &Console::GetHelp, *this ) );
-    }
 
-    void Console::RegisterCommand( const std::string& command, const Tools::Functor& function )
-    {
-        m_commands[ command ] = function;
-    }
+        IMPL_SINGLETON( Console )
 
-    void Console::SendChar( char character )
-    {
-        if( !m_enable )
-            return;
-
-        switch( character )
+        // See header file.
+        Console::Console():
+            m_currentCommand( ""),
+            m_enable( true )
         {
-            case '\n':
-            case '\r':
-                if( !m_currentCommand.empty() )
-                {
-                    ProcessCurrentCommand();
-                    m_currentCommand.clear();
-                }
-                break;
-            case '\b':
-                if( !m_currentCommand.empty() )
-                    m_currentCommand.erase( m_currentCommand.size() - 1 );
-                break;
-            default:
-                m_currentCommand += character;
-                break;
+            RegisterCommand( "?", Tools::Bind( &Console::GetHelp, *this ) );
         }
-    }
 
-    void Console::Enable( bool enable )
-    {
-        m_enable = enable;
-    }
-
-    bool Console::IsEnabled( void ) const
-    {
-        return m_enable;
-    }
-
-    void Console::ProcessCurrentCommand()
-    {
-        std::string command;
-        std::istringstream iss( m_currentCommand );
-        iss >> command;
-
-        TCommandsTable::iterator it = m_commands.find( command );
-
-        if( it != m_commands.end())
+        // See header file.
+        void Console::RegisterCommand( const std::string& command, const Tools::Functor& function )
         {
-            std::string args;
-            std::getline( iss, args );
-
-            std::cout << it->second( args ) << std::endl;
+            m_commands[ command ] = function;
         }
-        else
-            std::cout << "\"" << command << "\" not found" << std::endl;
-    }
 
-    std::string Console::GetHelp() const
-    {
-        std::string list;
+        // See header file.
+        void Console::SendChar( char character )
+        {
+            if( !m_enable )
+                return;
 
-        for( TCommandsTable::const_iterator it = m_commands.begin(); it != m_commands.end(); ++it )
-            list += it->first + "\n";//*/
+            switch( character )
+            {
+                case '\n':
+                case '\r':
+                    if( !m_currentCommand.empty() )
+                    {
+                        ProcessCurrentCommand();
+                        m_currentCommand.clear();
+                    }
+                    break;
+                case '\b':
+                    if( !m_currentCommand.empty() )
+                        m_currentCommand.erase( m_currentCommand.size() - 1 );
+                    break;
+                default:
+                    m_currentCommand += character;
+                    break;
+            }
+        }
 
-        return list;
-    }
-}
+        // See header file.
+        void Console::Enable( bool enable )
+        {
+            m_enable = enable;
+        }
+
+        // See header file.
+        bool Console::IsEnabled( void ) const
+        {
+            return m_enable;
+        }
+
+        // See header file.
+        void Console::ProcessCurrentCommand( void )
+        {
+            std::string command;
+            std::istringstream iss( m_currentCommand );
+            iss >> command;
+
+            TCommandsTable::iterator it = m_commands.find( command );
+
+            if( it != m_commands.end())
+            {
+                std::string args;
+                std::getline( iss, args );
+
+                std::cout << it->second( args ) << std::endl;
+            }
+            else
+                std::cout << "\"" << command << "\" not found" << std::endl;
+        }
+
+        // See header file.
+        std::string Console::GetHelp( void ) const
+        {
+            std::string list;
+
+            for( TCommandsTable::const_iterator it = m_commands.begin(); it != m_commands.end(); ++it )
+                list += it->first + "\n";//*/
+
+            return list;
+        }
+
+    } // end namespace Core
+
+} // end namespace TAG

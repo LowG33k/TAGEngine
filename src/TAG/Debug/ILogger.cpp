@@ -21,8 +21,8 @@
 #include <Debug/ILogger.hpp>
 #include <cstdarg>
 #include <cstdio>
-#include <Utilities/Date.hpp>
-#include <Utilities/Time.hpp>
+#include <Tools/Date.hpp>
+#include <Tools/Time.hpp>
 
 #include <Debug/MemoryDebug.hpp>
 

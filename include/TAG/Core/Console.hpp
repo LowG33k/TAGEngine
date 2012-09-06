@@ -24,33 +24,75 @@
 #include <Config/Config.hpp>
 #include <map>
 #include <string>
-#include <Utilities/Singleton.hpp>
-#include <Utilities/Functor.hpp>
+#include <Tools/Singleton.hpp>
+#include <Tools/Functor.hpp>
 
 namespace TAG
 {
 
-    class TAG_API Console : public TAG::Tools::Singleton< Console >
+    namespace Core
     {
-        MAKE_SINGLETON( Console )
-        public:
-            Console();
-            void RegisterCommand( const std::string& command, const Tools::Functor& function );
-            void SendChar( char character );
-            void Enable( bool enable = true );
-            bool IsEnabled( void ) const;
 
-        private:
-            std::string GetHelp() const;
-            void ProcessCurrentCommand();
-            typedef std::map< std::string, Tools::Functor > TCommandsTable;
+        /// \brief Console is a command interpreter
+        /// ////////////////////////////////////////////////
+        class TAG_API Console : public TAG::Tools::Singleton< Console >
+        {
+            MAKE_SINGLETON( Console )
+            public:
+                /// \brief Default constructor.
+                /// ////////////////////////////////////////////////
+                Console( void );
 
-            TCommandsTable m_commands;
-            std::string m_currentCommand;
-            bool m_enable;
+                /// \brief Register new command
+                ///
+                /// \param command Command identifiant.
+                /// \brief function The function, used Bind for add function.
+                /// ////////////////////////////////////////////////
+                void RegisterCommand( const std::string& command, const Tools::Functor& function );
 
-    };
+                /// \brief Use for send a character to the console.
+                ///
+                /// You can send a character by network, by a shell, or a graphical console
+                ///
+                /// \param character The new character
+                /// ////////////////////////////////////////////////
+                void SendChar( char character );
 
-}
+                /// \brief Activate/Deactivate the console.
+                ///
+                /// \param enable True for activate the console, false also.
+                /// ////////////////////////////////////////////////
+                void Enable( bool enable = true );
+
+                /// \brief Get if console is enabled.
+                ///
+                /// \return If console is enabled.
+                /// ////////////////////////////////////////////////
+                bool IsEnabled( void ) const;
+
+            private:
+                /// \brief Used for display console help.
+                ///
+                /// \return Return all command
+                /// ////////////////////////////////////////////////
+                std::string GetHelp( void ) const;
+
+                /// \brief Treat current command
+                /// ////////////////////////////////////////////////
+                void ProcessCurrentCommand( void );
+
+                /// \brief Shortcut for a functor table
+                /// ////////////////////////////////////////////////
+                typedef std::map< std::string, Tools::Functor > TCommandsTable;
+
+                TCommandsTable m_commands; ///< Conserve all commands
+                std::string m_currentCommand; ///< The current line
+                bool m_enable; ///< Conserve if console is enable.
+
+        };
+
+    } // end namespace Core
+
+} // end namespace TAG
 
 #endif // CONSOLE_HPP

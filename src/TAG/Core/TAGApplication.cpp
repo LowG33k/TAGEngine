@@ -23,7 +23,6 @@
 #include <Debug/LoggerFile.hpp>
 
 #include <Debug/MemoryDebug.hpp>
-#include <windows.h>
 
 namespace TAG
 {
@@ -60,7 +59,6 @@ namespace TAG
             Debug::ILogger::Log( Debug::ILogger::CRITICAL, "Test critical\n" );
             Debug::ILogger::Log() << "Load\n";
 
-            Sleep( 2500 );
             Debug::ILogger::EndGroup( "Application initialized" );
 
             return 0;
